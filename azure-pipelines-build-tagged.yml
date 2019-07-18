@@ -22,6 +22,20 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- pwsh:
+    $verMatches = [Regex]::Matches($Build.SourceBranchName, '0*(?<majorVersion>\d+)\.0*(?<minorVersion>\d+)\.0*(?<patchVersion>\d+)([-\.](?<suffixVersion>[\w.]+))?')
+    $majorVersion = $verMatches[0].Matches["majorVersion"]
+    $minorVersion = $verMatches[0].Matches["minorVersion"]
+    $patchVersion = $verMatches[0].Matches["patchVersion"]
+    $suffixVersion = $verMatches[0].Matches["suffixVersion"]
+    echo "Extracted version - $majorVersion . $minorVersion . $patchVersion with suffix $suffixVersion"
+  displayName: 'Extract version number details'
+# TODO - take the tag that triggered this build and:
+#  0) parse the $(Build.SourceBranchName) which will be the tag name string
+#  1) split into majorVersion, minorVersion, patchVersion, optional suffixVersion (eg. '-alpha', '.beta1')
+#  2) run a script to update any version resource files to have the correct version info
+#  3) assign the appropriate NuGet env var / variables with the correct version info
+
 - task: NuGetToolInstaller@1
   displayName: 'Use NuGet'
 
