@@ -11,7 +11,7 @@
 trigger:
   tags:
     include:
-    - *.*.*
+    - '*.*.*'
 
 pool:
   vmImage: 'windows-latest'
