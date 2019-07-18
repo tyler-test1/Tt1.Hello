@@ -22,13 +22,7 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- pwsh:
-    $global:verMatches = [Regex]::Matches($Build.SourceBranchName, '0*(?<majorVersion>\d+)\.0*(?<minorVersion>\d+)\.0*(?<patchVersion>\d+)([-\.](?<suffixVersion>[\w.]+))?')
-    $global:majorVersion = $global:verMatches[0].Matches["majorVersion"]
-    $global:minorVersion = $global:verMatches[0].Matches["minorVersion"]
-    $global:patchVersion = $global:verMatches[0].Matches["patchVersion"]
-    $global:suffixVersion = $global:verMatches[0].Matches["suffixVersion"]
-    echo "Extracted version - $global:majorVersion . $global:minorVersion . $global:patchVersion with suffix $global:suffixVersion"
+- pwsh: ./ExtractVersionComponents.ps1 $Build.SourceBranchName
   displayName: 'Extract version number details'
 # TODO - take the tag that triggered this build and:
 #  0) parse the $(Build.SourceBranchName) which will be the tag name string
