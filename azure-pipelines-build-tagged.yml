@@ -26,7 +26,7 @@ steps:
   inputs:
     targetType: filePath
     filePath: ./ExtractVersionComponents.ps1
-    arguments: '$Build.SourceBranchName'
+    arguments: "$(Build.SourceBranchName)"
     pwsh: true
   displayName: 'Extract version number details'
 # TODO - take the tag that triggered this build and:
