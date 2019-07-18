@@ -22,7 +22,7 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- pwsh: ./ExtractVersionComponents.ps1 $Build.SourceBranchName
+- pwsh: ./ExtractVersionComponents.ps1 '$Build.SourceBranchName'
   displayName: 'Extract version number details'
 # TODO - take the tag that triggered this build and:
 #  0) parse the $(Build.SourceBranchName) which will be the tag name string
