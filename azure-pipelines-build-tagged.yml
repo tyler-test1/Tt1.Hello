@@ -13,6 +13,7 @@ trigger:
     - refs/tags/v*
     exclude:
     - refs/heads/*
+    - refs/pull/*
 
 pool:
   vmImage: 'windows-latest'
