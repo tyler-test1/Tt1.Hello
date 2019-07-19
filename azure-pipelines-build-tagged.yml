@@ -8,13 +8,12 @@
 #   HappyFunThing
 #
 trigger:
-  branches:
+  tags:
     include:
-    - refs/tags/v*
+    - v*
+  branches:
     exclude:
-    - refs/heads/*
-    - refs/pull/*
-    - refs/*
+    - '*'
 
 pool:
   vmImage: 'windows-latest'
@@ -25,7 +24,7 @@ variables:
   buildConfiguration: 'Release'
 
 # Let's have these named to match the tags
-name: Tagged_$(Build.SourceBranchName)_$(Rev:.r)
+name: Tagged_$(Build.SourceBranchName)$(Rev:.r)
 
 steps:
 #  0) parse the $(Build.SourceBranchName) which will be the tag name string
