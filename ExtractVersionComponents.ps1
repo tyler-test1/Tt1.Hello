@@ -15,6 +15,12 @@ $minorVersion = $verMatches[0].Groups["minorVersion"]
 $patchVersion = $verMatches[0].Groups["patchVersion"]
 $suffixVersion = $verMatches[0].Groups["suffixVersion"]
 
+# Massage the suffix into normalized form so it can be directly appended to the end of the others
+IF (-Not [string]::IsNullOrWhiteSpace($suffixVersion))
+{
+	$suffixVersion = "-$suffixVersion"
+}
+
 # Write the variables to the Azure agent environment
 Write-Host "##vso[task.setvariable variable=$majorVersionOutName]$majorVersion"
 Write-Host "##vso[task.setvariable variable=$minorVersionOutName]$minorVersion"
