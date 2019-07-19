@@ -42,8 +42,8 @@ steps:
     GeneratePackageOnBuild: true
     VersionNumber: '$(majorVersion).$(minorVersion).$(patchVersion)'
     FileVersionNumber: '$(majorVersion).$(minorVersion).$(patchVersion)'
-    InformationalVersion: '$(majorVersion).$(minorVersion).$(patchVersion)-$(suffixVersion)'
-    PackageVersion: '$(majorVersion).$(minorVersion).$(patchVersion)-$(suffixVersion)'
+    InformationalVersion: '$(majorVersion).$(minorVersion).$(patchVersion)$(suffixVersion)'
+    PackageVersion: '$(majorVersion).$(minorVersion).$(patchVersion)$(suffixVersion)'
 
 - task: NuGetToolInstaller@1
   displayName: 'Use NuGet'
