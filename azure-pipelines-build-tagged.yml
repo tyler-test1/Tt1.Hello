@@ -47,7 +47,7 @@ steps:
   inputs:
     Path: '$(Build.SourcesDirectory)'
     FileNames: '**/*.csproj;!**/*.Tests.csproj'
-    InsertAttributes: false
+    InsertAttributes: true
     FileEncoding: 'auto'
     WriteBOM: false
     GeneratePackageOnBuild: true
