@@ -39,12 +39,7 @@ steps:
     Path: '$(Build.SourcesDirectory)'
     FileNames: '**/*Hello.csproj'
     InsertAttributes: true
-    FileEncoding: 'auto'
-    WriteBOM: false
     GeneratePackageOnBuild: true
-    Authors: 'Tyler Test1'
-    Company: 'Tyler test1'
-    Copyright: 'Copyright (c) 2019 Tyler Test1'
     VersionNumber: '$(majorVersion).$(minorVersion).$(patchVersion)'
     FileVersionNumber: '$(majorVersion).$(minorVersion).$(patchVersion)'
     InformationalVersion: '$(majorVersion).$(minorVersion).$(patchVersion)-$(suffixVersion)'
