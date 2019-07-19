@@ -25,6 +25,9 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
+# Let's have these named to match the tags
+name: Tagged_$(Build.SourceBranchName)_$(Rev:.r)
+
 steps:
 #  0) parse the $(Build.SourceBranchName) which will be the tag name string
 #  1) split into majorVersion, minorVersion, patchVersion, optional suffixVersion (eg. '-alpha', '.beta1')
