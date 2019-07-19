@@ -32,15 +32,6 @@ steps:
     pwsh: true
   displayName: 'Extract version number details'
 
-- task: NuGetToolInstaller@1
-  displayName: 'Use NuGet'
-
-- task: NuGetCommand@2
-  displayName: 'NuGet Restore'
-  inputs:
-    restoreSolution: '$(solution)'
-
-# TODO - take the tag that triggered this build and:
 #  2) run a script to update any version resource files to have the correct version info
 #  3) assign the appropriate NuGet env var / variables with the correct version info
 - task: Assembly-Info-NetCore@2
@@ -58,6 +49,14 @@ steps:
     FileVersionNumber: '$(majorVersion).$(minorVersion).$(patchVersion)'
     InformationalVersion: '$(majorVersion).$(minorVersion).$(patchVersion)-$(suffixVersion)'
     PackageVersion: '$(majorVersion).$(minorVersion).$(patchVersion)-$(suffixVersion)'
+
+- task: NuGetToolInstaller@1
+  displayName: 'Use NuGet'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet Restore'
+  inputs:
+    restoreSolution: '$(solution)'
 
 - task: VSBuild@1
   displayName: 'Build solution'
