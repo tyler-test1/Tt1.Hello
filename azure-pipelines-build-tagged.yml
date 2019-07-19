@@ -46,7 +46,7 @@ steps:
 - task: Assembly-Info-NetCore@2
   inputs:
     Path: '$(Build.SourcesDirectory)'
-    FileNames: '**/*.csproj'
+    FileNames: '**/Hello.csproj'
     InsertAttributes: true
     FileEncoding: 'auto'
     WriteBOM: true
