@@ -49,14 +49,13 @@ steps:
     FileNames: '**/*Hello.csproj'
     InsertAttributes: true
     FileEncoding: 'auto'
-    WriteBOM: true
+    WriteBOM: false
     GeneratePackageOnBuild: true
     PackageId: 'Tt1.Hello'
     Authors: 'Tyler Test1'
     Company: 'Tyler test1'
     Description: 'Testing the end-to-end setup for OSS nuget workflow.'
     Copyright: 'Copyright (c) 2019 Tyler Test1'
-    PackageLicenseUrl: 'https://github.com/tyler-test1/Tt1.Hello/blob/develop/LICENSE'
     PackageProjectUrl: 'https://github.com/tyler-test1/Tt1.Hello'
     RepositoryUrl: 'https://github.com/tyler-test1/Tt1.Hello'
     PackageTags: 'sample, test'
