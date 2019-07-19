@@ -35,6 +35,27 @@ steps:
 # TODO - take the tag that triggered this build and:
 #  2) run a script to update any version resource files to have the correct version info
 #  3) assign the appropriate NuGet env var / variables with the correct version info
+- task: Assembly-Info-NetCore@2
+  inputs:
+    Path: '$(Build.SourcesDirectory)'
+    FileNames: '**/*.csproj'
+    InsertAttributes: false
+    FileEncoding: 'auto'
+    WriteBOM: false
+    GeneratePackageOnBuild: true
+    PackageId: 'Tt1.Hello'
+    Authors: 'Tyler Test1'
+    Company: 'Tyler test1'
+    Description: 'Testing the end-to-end setup for OSS nuget workflow.'
+    Copyright: 'Copyright (c) 2019 Tyler Test1'
+    PackageLicenseUrl: 'https://github.com/tyler-test1/Tt1.Hello/blob/develop/LICENSE'
+    PackageProjectUrl: 'https://github.com/tyler-test1/Tt1.Hello'
+    RepositoryUrl: 'https://github.com/tyler-test1/Tt1.Hello'
+    PackageTags: 'sample, test'
+    VersionNumber: '$(majorVersion).$(minorVersion).$(patchVersion).$(suffixVersion)'
+    FileVersionNumber: '$(majorVersion).$(minorVersion).$(patchVersion).$(suffixVersion)'
+    InformationalVersion: '$(majorVersion).$(minorVersion).$(patchVersion).$(suffixVersion)'
+    PackageVersion: '$(majorVersion).$(minorVersion).$(patchVersion).$(suffixVersion)'
 
 - task: NuGetToolInstaller@1
   displayName: 'Use NuGet'
