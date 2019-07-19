@@ -2,6 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.0.0</Version>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Authors>Tyler Test1</Authors>
+    <Description>Test package for end-to-end workflow from CI through to release pipeline in Azure DevOps for deploying to NuGet.org.</Description>
+    <Copyright>Copyright (c) 2019 Tyler Test1</Copyright>
+    <PackageProjectUrl>https://github.com/tyler-test1/Tt1.Hello</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/tyler-test1/Tt1.Hello</RepositoryUrl>
+    <PackageTags>test, azure, pipelines, nuget, deploy</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

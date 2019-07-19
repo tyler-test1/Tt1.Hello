@@ -11,7 +11,11 @@
 trigger:
   tags:
     include:
-    - '*.*.*'
+    - 'v*.*.*'
+  branches:
+    include:
+    - master
+    - develop
 
 pool:
   vmImage: 'windows-latest'
@@ -22,6 +26,29 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+#  0) parse the $(Build.SourceBranchName) which will be the tag name string
+#  1) split into majorVersion, minorVersion, patchVersion, optional suffixVersion (eg. '-alpha', '.beta1')
+- task: PowerShell@2
+  inputs:
+    targetType: filePath
+    filePath: ./ExtractVersionComponents.ps1
+    arguments: "$(Build.SourceBranchName)"
+    pwsh: true
+  displayName: 'Extract version number details'
+
+#  2) run a script to update any version resource files to have the correct version info
+#  3) assign the appropriate NuGet env var / variables with the correct version info
+- task: Assembly-Info-NetCore@2
+  inputs:
+    Path: '$(Build.SourcesDirectory)'
+    FileNames: '**/*Hello.csproj'
+    InsertAttributes: true
+    GeneratePackageOnBuild: true
+    VersionNumber: '$(majorVersion).$(minorVersion).$(patchVersion)'
+    FileVersionNumber: '$(majorVersion).$(minorVersion).$(patchVersion)'
+    InformationalVersion: '$(majorVersion).$(minorVersion).$(patchVersion)$(suffixVersion)'
+    PackageVersion: '$(majorVersion).$(minorVersion).$(patchVersion)$(suffixVersion)'
+
 - task: NuGetToolInstaller@1
   displayName: 'Use NuGet'
 
