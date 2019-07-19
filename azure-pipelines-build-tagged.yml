@@ -11,6 +11,8 @@ trigger:
   branches:
     include:
     - refs/tags/v*
+    exclude:
+    - refs/heads/*
 
 pool:
   vmImage: 'windows-latest'
