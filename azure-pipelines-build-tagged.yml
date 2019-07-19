@@ -46,10 +46,10 @@ steps:
 - task: Assembly-Info-NetCore@2
   inputs:
     Path: '$(Build.SourcesDirectory)'
-    FileNames: '**/*.csproj;!**/*.Tests.csproj'
+    FileNames: '**/*.csproj'
     InsertAttributes: true
     FileEncoding: 'auto'
-    WriteBOM: false
+    WriteBOM: true
     GeneratePackageOnBuild: true
     PackageId: 'Tt1.Hello'
     Authors: 'Tyler Test1'
