@@ -14,6 +14,7 @@ trigger:
     exclude:
     - refs/heads/*
     - refs/pull/*
+    - refs/*
 
 pool:
   vmImage: 'windows-latest'
