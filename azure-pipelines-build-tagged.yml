@@ -6,11 +6,17 @@
 # Tags that should not match:
 #   1.2
 #   HappyFunThing
-# 
+#
 trigger:
   tags:
     include:
     - v*
+
+# Work around the default PR trigger on everything... :facepalm:
+pr: 
+  branches: 
+    exclude:
+    - '*'
 
 pool:
   vmImage: 'windows-latest'
