@@ -12,6 +12,8 @@ trigger:
     include:
     - v*
   branches:
+    include:
+    - jiggy
     exclude:
     - '*'
 
