@@ -1,6 +1,5 @@
 # Pipeline for building artifacts for tagged versions
 # Tags that should match:
-#   1.2.3
 #   v4.5.6
 #   v7.8.9-alpha1
 #
@@ -11,11 +10,7 @@
 trigger:
   tags:
     include:
-    - 'v*.*.*'
-  branches:
-    include:
-    - master
-    - develop
+    - v*
 
 pool:
   vmImage: 'windows-latest'
@@ -26,7 +21,7 @@ variables:
   buildConfiguration: 'Release'
 
 # Let's have these named to match the tags
-name: Tagged_$(Build.SourceBranchName)_$(Rev:.r)
+name: Tagged_$(Build.SourceBranchName)$(Rev:.r)
 
 steps:
 #  0) parse the $(Build.SourceBranchName) which will be the tag name string
