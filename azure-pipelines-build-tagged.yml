@@ -6,7 +6,7 @@
 # Tags that should not match:
 #   1.2
 #   HappyFunThing
-#
+# 
 trigger:
   tags:
     include:
