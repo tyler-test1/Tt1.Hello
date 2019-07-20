@@ -14,7 +14,7 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-# Let's have these named to match the Pull Request IDs
+# Let's have these named to match the Pull Request Numbers
 name: PR_#$(System.PullRequest.PullRequestNumber)$(Rev:.r)
 
 steps:
