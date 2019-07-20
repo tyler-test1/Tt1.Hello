@@ -14,6 +14,9 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
+# Let's have these named to match the Pull Request IDs
+name: PR_#$(Build.SourceBranchName)$(Rev:.r)
+
 steps:
 - task: NuGetToolInstaller@1
   displayName: 'Use NuGet'
