@@ -48,10 +48,10 @@ steps:
     FileNames: '**/*Hello.csproj'
     InsertAttributes: true
     GeneratePackageOnBuild: true
-    VersionNumber: '$(majorVersion).$(minorVersion).$(patchVersion)'
-    FileVersionNumber: '$(majorVersion).$(minorVersion).$(patchVersion)'
-    InformationalVersion: '$(majorVersion).$(minorVersion).$(patchVersion)$(suffixVersion)'
-    PackageVersion: '$(majorVersion).$(minorVersion).$(patchVersion)$(suffixVersion)'
+    VersionNumber: '$(majorVersion).$(minorVersion).$(patchVersion)$(Rev:.r)'
+    FileVersionNumber: '$(majorVersion).$(minorVersion).$(patchVersion)$(Rev:.r)'
+    InformationalVersion: '$(majorVersion).$(minorVersion).$(patchVersion)$(suffixVersion)$(Rev:.r)'
+    PackageVersion: '$(majorVersion).$(minorVersion).$(patchVersion)$(suffixVersion)$(Rev:.r)'
 
 - task: NuGetToolInstaller@1
   displayName: 'Use NuGet'
