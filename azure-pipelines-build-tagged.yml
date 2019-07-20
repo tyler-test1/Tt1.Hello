@@ -11,11 +11,6 @@ trigger:
   tags:
     include:
     - v*
-  branches:
-    include:
-    - jiggy
-    exclude:
-    - '*'
 
 pool:
   vmImage: 'windows-latest'
