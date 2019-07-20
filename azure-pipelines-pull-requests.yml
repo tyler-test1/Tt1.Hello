@@ -15,7 +15,7 @@ variables:
   buildConfiguration: 'Release'
 
 # Let's have these named to match the Pull Request IDs
-name: PR_#$(System.PullRequest.PullRequestId)$(Rev:.r)
+name: PR_#$(System.PullRequest.PullRequestNumber)$(Rev:.r)
 
 steps:
 - task: NuGetToolInstaller@1
