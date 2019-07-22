@@ -8,9 +8,9 @@
 #   HappyFunThing
 #
 trigger:
-  tags:
+  branches: 
     include:
-    - v*
+    - releases/v*
 
 # Work around the default PR trigger on everything... :facepalm:
 pr: 
