@@ -81,10 +81,18 @@ steps:
 #  condition: and(succeeded(), )
 
 - task: CopyFiles@2
-  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  displayName: 'Copy nupkg(s) to: $(build.artifactstagingdirectory)'
   inputs:
     SourceFolder: '$(system.defaultworkingdirectory)'
     Contents: '**\bin\$(BuildConfiguration)\**\*.nupkg'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+  condition: succeededOrFailed()
+
+- task: CopyFiles@2
+  displayName: 'Copy DocFx output to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '**\docfx_project\_site'
     TargetFolder: '$(build.artifactstagingdirectory)'
   condition: succeededOrFailed()
 
