@@ -13,6 +13,10 @@
     <PackageTags>test, azure, pipelines, nuget, deploy</PackageTags>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\git\Tt1.Hello\Tt1.Hello\Tt1.Hello.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
