@@ -93,7 +93,7 @@ steps:
   inputs:
     SourceFolder: '$(system.defaultworkingdirectory)'
     Contents: '**\docfx_project\_site\**'
-    TargetFolder: '$(build.artifactstagingdirectory)\docfx_site'
+    TargetFolder: '$(build.artifactstagingdirectory)'
   condition: succeededOrFailed()
 
 - task: PublishBuildArtifacts@1
