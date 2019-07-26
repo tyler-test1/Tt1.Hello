@@ -1,0 +1,28 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Tt1.Hello
+  name: Tt1.Hello
+  href: api/Tt1.Hello.html
+  commentId: N:Tt1.Hello
+  fullName: Tt1.Hello
+  nameWithType: Tt1.Hello
+- uid: Tt1.Hello.Greeter
+  name: Greeter
+  href: api/Tt1.Hello.Greeter.html
+  commentId: T:Tt1.Hello.Greeter
+  fullName: Tt1.Hello.Greeter
+  nameWithType: Greeter
+- uid: Tt1.Hello.Greeter.SayHello(System.String)
+  name: SayHello(String)
+  href: api/Tt1.Hello.Greeter.html#Tt1_Hello_Greeter_SayHello_System_String_
+  commentId: M:Tt1.Hello.Greeter.SayHello(System.String)
+  fullName: Tt1.Hello.Greeter.SayHello(System.String)
+  nameWithType: Greeter.SayHello(String)
+- uid: Tt1.Hello.Greeter.SayHello*
+  name: SayHello
+  href: api/Tt1.Hello.Greeter.html#Tt1_Hello_Greeter_SayHello_
+  commentId: Overload:Tt1.Hello.Greeter.SayHello
+  isSpec: "True"
+  fullName: Tt1.Hello.Greeter.SayHello
+  nameWithType: Greeter.SayHello
