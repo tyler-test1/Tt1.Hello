@@ -92,8 +92,8 @@ steps:
   displayName: 'Copy DocFx output to: $(build.artifactstagingdirectory)'
   inputs:
     SourceFolder: '$(system.defaultworkingdirectory)'
-    Contents: '**\docfx_project\_site'
-    TargetFolder: '$(build.artifactstagingdirectory)'
+    Contents: '**\docfx_project\_site\**'
+    TargetFolder: '$(build.artifactstagingdirectory)\docfx_site'
   condition: succeededOrFailed()
 
 - task: PublishBuildArtifacts@1
