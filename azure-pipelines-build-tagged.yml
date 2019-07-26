@@ -74,6 +74,12 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+# DocFx building
+- task: DocFxTask@0
+  inputs:
+    solution: 'docfx_project/docfx.json'
+#  condition: and(succeeded(), )
+
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
   inputs:
