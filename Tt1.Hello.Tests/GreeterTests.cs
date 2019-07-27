@@ -4,6 +4,9 @@ using Tt1.Hello;
 
 namespace Tests
 {
+    /// <summary>
+    /// We don't want to see the test metadata showing up in the generated docs.
+    /// </summary>
     public class GreeterTests
     {
         [SetUp]
@@ -11,6 +14,10 @@ namespace Tests
         {
         }
 
+        /// <summary>
+        /// No sir...  don't want to see this in generated API docs.
+        /// </summary>
+        /// <param name="nothing"></param>
         [TestCase(null)]
         [TestCase("")]
         public void SayHello_With_Nothing_Just_Says_Hello(string nothing)
