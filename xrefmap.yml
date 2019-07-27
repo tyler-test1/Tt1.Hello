@@ -13,6 +13,19 @@ references:
   commentId: T:Tt1.Hello.Greeter
   fullName: Tt1.Hello.Greeter
   nameWithType: Greeter
+- uid: Tt1.Hello.Greeter.NotImplementedYet
+  name: NotImplementedYet()
+  href: api/Tt1.Hello.Greeter.html#Tt1_Hello_Greeter_NotImplementedYet
+  commentId: M:Tt1.Hello.Greeter.NotImplementedYet
+  fullName: Tt1.Hello.Greeter.NotImplementedYet()
+  nameWithType: Greeter.NotImplementedYet()
+- uid: Tt1.Hello.Greeter.NotImplementedYet*
+  name: NotImplementedYet
+  href: api/Tt1.Hello.Greeter.html#Tt1_Hello_Greeter_NotImplementedYet_
+  commentId: Overload:Tt1.Hello.Greeter.NotImplementedYet
+  isSpec: "True"
+  fullName: Tt1.Hello.Greeter.NotImplementedYet
+  nameWithType: Greeter.NotImplementedYet
 - uid: Tt1.Hello.Greeter.SayHello(System.String)
   name: SayHello(String)
   href: api/Tt1.Hello.Greeter.html#Tt1_Hello_Greeter_SayHello_System_String_
