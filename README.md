@@ -1,6 +1,10 @@
 # Tt1.Hello
 Hello world repo for testing workflow of setting up CI/CD.
 
+# Documentation
+
+Go [Here](https://tyler-test1.github.io/Tt1.Hello/) for the docs.  :-)
+
 # Badges
 |     |     |
 | --- | --- |
