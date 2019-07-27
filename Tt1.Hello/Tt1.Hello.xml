@@ -16,5 +16,10 @@
             <param name="name">The name of the entity to which the greeting will be made.</param>
             <returns></returns>
         </member>
+        <member name="M:Tt1.Hello.Greeter.NotImplementedYet">
+            <summary>
+            Here's a new class method description.
+            </summary>
+        </member>
     </members>
 </doc>

@@ -17,5 +17,13 @@ namespace Tt1.Hello
             var effectiveName = string.IsNullOrWhiteSpace(name) ? string.Empty : $", {name}";
             return $"Hello{effectiveName}!";
         }
+
+        /// <summary>
+        /// Here's a new class method description.
+        /// </summary>
+        public void NotImplementedYet()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
