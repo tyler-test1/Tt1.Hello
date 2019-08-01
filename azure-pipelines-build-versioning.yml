@@ -1,5 +1,5 @@
 # Pipeline for building artifacts for tagged versions leveraging the 
-# BuildVersioning task
+# GitVersion task
 
 # TODO: Adjust the trigger to be just what we want
 #trigger:
@@ -23,40 +23,20 @@ name: $(Build.SourceBranchName)$(Rev:.r)
 
 steps:
 # Use the BuildVersioning task!
-- task: BuildVersioning@0
+- task: GitVersion@5
   inputs:
-    versionSource: 'gitversion'
-    doInstallGitVersion: true
-    paramAssemblyVersion: '7'
-    paramAssemblyFileVersion: '7'
-    paramAssemblyInformationalVersion: '6'
-    paramOverwriteFourthDigitWithBuildCounter: true
-    paramBuildCounterKey: '$(Build.Repository.Name)-$(BuildVersion.MajorVersion).$(BuildVersion.MinorVersion).$(BuildVersion.PatchVersion)'
-    paramVersionCode: '2'
-    doAssemblyInfoAppendSuffix: true
-    doConvertAssemblyInfoToLowerCase: false
-    paramAssemblyInfoSuffixType: '4'
-    buildNumberVersionFormat: '3'
-    buildNumberAction: 'nothing'
-    doReplaceAssemblyInfo: true
-    filePatternAssemblyInfo: '**\AssemblyInfo.*'
-    doReplaceNuspec: true
-    filePatternNuspec: '**\*.nuspec'
-    paramNuspecVersionType: '2'
-    doNuspecUpdateDepencency: false
-    doReplaceNpm: false
-    doReplaceDotNetCore: true
-    filePatternDotNetCore: '**\*.csproj'
-    paramDotNetCoreVersionType: '3'
-    doReplaceAndroid: false
-    doReplaceiOS: false
-    doReplaceCustom: false
-    doShowWarningsForUnmatchedRegex: true
-    excludeFilePattern: |
-      !**/bin/**
-      !**/obj/**
-      !**/node_modules/**
-      !**/packages/**
+    runtime: 'core'
+
+- task: Assembly-Info-NetCore@2
+  inputs:
+    Path: '$(Build.SourcesDirectory)'
+    FileNames: '**/*Hello.csproj'
+    InsertAttributes: true
+    GeneratePackageOnBuild: true
+    VersionNumber: '$(GitVersion.AssemblySemVer)'
+    FileVersionNumber: '$(GitVersion.AssemblySemFileVer)'
+    InformationalVersion: '$(GitVersion.InformationalVersion)'
+    PackageVersion: '$(GitVersion.FullSemVer)'
 
 - task: NuGetToolInstaller@1
   displayName: 'Use NuGet'
