@@ -1,19 +1,108 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# Pipeline for building artifacts for tagged versions leveraging the 
+# BuildVersioning task
 
-trigger:
-- master
+# TODO: Adjust the trigger to be just what we want
+#trigger:
+
+# Work around the default PR trigger on everything... :facepalm:
+pr: 
+  branches: 
+    exclude:
+    - '*'
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+# Let's have these named to match the tags
+name: $(Build.SourceBranchName)$(Rev:.r)
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+# Use the BuildVersioning task!
+- task: BuildVersioning@0
+  inputs:
+    versionSource: 'gitversion'
+    doInstallGitVersion: true
+    paramAssemblyVersion: '7'
+    paramAssemblyFileVersion: '7'
+    paramAssemblyInformationalVersion: '6'
+    paramOverwriteFourthDigitWithBuildCounter: true
+    paramBuildCounterKey: '$(Build.Repository.Name)-$(BuildVersion.MajorVersion).$(BuildVersion.MinorVersion).$(BuildVersion.PatchVersion)'
+    paramVersionCode: '2'
+    doAssemblyInfoAppendSuffix: true
+    doConvertAssemblyInfoToLowerCase: false
+    paramAssemblyInfoSuffixType: '4'
+    buildNumberVersionFormat: '3'
+    buildNumberAction: 'nothing'
+    doReplaceAssemblyInfo: true
+    filePatternAssemblyInfo: '**\AssemblyInfo.*'
+    doReplaceNuspec: true
+    filePatternNuspec: '**\*.nuspec'
+    paramNuspecVersionType: '2'
+    doNuspecUpdateDepencency: false
+    doReplaceNpm: false
+    doReplaceDotNetCore: true
+    filePatternDotNetCore: '**\*.csproj'
+    paramDotNetCoreVersionType: '3'
+    doReplaceAndroid: false
+    doReplaceiOS: false
+    doReplaceCustom: false
+    doShowWarningsForUnmatchedRegex: true
+    excludeFilePattern: |
+      !**/bin/**
+      !**/obj/**
+      !**/node_modules/**
+      !**/packages/**
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: NuGetToolInstaller@1
+  displayName: 'Use NuGet'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet Restore'
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: VSBuild@1
+  displayName: 'Build solution'
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: VSTest@2
+  displayName: 'Test solution'
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+# DocFx building
+- task: DocFxTask@0
+  inputs:
+    solution: 'docfx_project/docfx.json'
+#  condition: and(succeeded(), )
+
+- task: CopyFiles@2
+  displayName: 'Copy nupkg(s) to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '**\bin\$(BuildConfiguration)\**\*.nupkg'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+  condition: succeededOrFailed()
+
+- task: CopyFiles@2
+  displayName: 'Copy DocFx output to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '**\docfx_project\_site\**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+  condition: succeededOrFailed()
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+  condition: succeededOrFailed()
